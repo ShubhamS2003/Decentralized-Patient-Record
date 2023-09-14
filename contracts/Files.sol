@@ -25,6 +25,7 @@ contract Files{
     struct Doctors{
         string id;
         string name;
+        uint age;
         string phone;
         string gender;
         string dob;

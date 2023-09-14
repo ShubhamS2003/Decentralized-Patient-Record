@@ -1,9 +1,12 @@
 require("@nomicfoundation/hardhat-toolbox");
 
+require("dotenv").config();
+
 /** @type import('hardhat/config').HardhatUserConfig */
 
-const ALCHEMY_API_KEY = "t4DjVHNgj2_77ydUejLmnHd9ZwVd3Ot9";
-const GOERLI_PRIVATE_KEY = "22f996fb6d18bbd18905ef3989e79133bc6314be794d8f45bc94157d3658fbf7";
+const GOERLI_URL = process.env.GOERLI_URL;
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+
 module.exports = {
   solidity: {
     version: "0.8.19",
@@ -16,9 +19,13 @@ module.exports = {
     }
   },
   networks: {
-    goerli:{
-      url:`https://eth-goerli.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
-      accounts:[`${GOERLI_PRIVATE_KEY}`],
-    }
+    goerli: {
+      url: GOERLI_URL,
+      accounts: [PRIVATE_KEY],
+    }, 
+  },
+  paths: {
+    artifacts: "./src/artifacts",
   }
+  
 };
